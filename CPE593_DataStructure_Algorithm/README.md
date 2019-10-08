@@ -1,14 +1,14 @@
 # CPE593_Applied Data Structure and Algorithms
 Implement some important Algorithms by using C++
 
-##Algorithm complexity
+## Algorithm complexity
 
-##Prime Test
+## Prime Test
 
-##Sorting
+## Sorting
 
-##Shullfing
+## Shullfing
 
-##Searching
+## Searching
 
-##Array
+## Array
