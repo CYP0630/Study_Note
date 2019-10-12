@@ -6,6 +6,8 @@
 ## Homework Description
 Write a golden mean search to find the best k value for your \Knuth-optimized partial quicksort.
 
+## Input Data
+arr[] = {2, 4, 8, 16, 32, 20, 10, 5, 1}
 ## Result
 Kunth QuickSort Result
 ![KnuthQuickSort](Result_Kunth.png)
