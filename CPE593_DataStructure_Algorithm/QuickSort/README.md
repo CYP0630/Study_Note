@@ -7,5 +7,5 @@
 Write a golden mean search to find the best k value for your \Knuth-optimized partial quicksort.
 
 ### Result
-![KnuthQuickSort](Result_Knuth.png)
+![KnuthQuickSort](Result_Kunth.png)
   
