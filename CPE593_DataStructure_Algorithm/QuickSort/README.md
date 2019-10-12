@@ -22,7 +22,7 @@ Thus, we analysis the code and check the each component in code (Golden Mean Sea
 
 * The perplexity of input array is not enough. 
 
-We still try to figure out the problem in this homework. Looking the two figures. 
+We still try to figure out the problem in this homework. 
 
 
   
