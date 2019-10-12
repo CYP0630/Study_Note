@@ -7,6 +7,7 @@ Implement some important Algorithms by using C++
 
 ## 2_Sorting
    Insertion Sort
+   
    QuickSort
 
 ## 3_Shullfing
