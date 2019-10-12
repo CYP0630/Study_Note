@@ -6,6 +6,8 @@ Implement some important Algorithms by using C++
 ## 1_Prime Test
 
 ## 2_Sorting
+   Insertion Sort
+   QuickSort
 
 ## 3_Shullfing
    Fisher-Yates Shullfing
