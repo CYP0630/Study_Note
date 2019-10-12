@@ -11,7 +11,7 @@ Kunth QuickSort Result
 ![KnuthQuickSort](Result_Kunth.png)
 
 Benchmark: Original QuickSort Result
-![Benchmark][benchmark_quicksort.png]
+![Benchmark](benchmark_quicksort.png)
 
 ## Discussion
 
