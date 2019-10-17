@@ -2,6 +2,7 @@
 //
 // Author: Yupeng Cao
 // ID:     10454637
+//https://github.com/CYP0630/Study_Note/tree/master/CPE593_DataStructure_Algorithm/QuickSort
 
 //******************************************************
 // Write a golden mean search to find the best k value
@@ -16,8 +17,23 @@
 
 using namespace std;
 
+// phi is 1.618.
 const double phi = (1+sqrt(5))/2;
 
+//Define a function to generate a random
+void RandomArray(int arr[],int n)
+{
+    int i=0;
+    srand( (unsigned)time( NULL ) );
+    while(i<n)
+    {
+        arr[i++]=rand();
+    }
+}
+
+
+//Define golden mean search function
+//Here refers to reference[1].
 int GoldenMeanSearch(int arr[], int n){
     int left = 0, right = n-1;
     int S = (right - left) / phi;
@@ -39,10 +55,13 @@ int GoldenMeanSearch(int arr[], int n){
         }
     }
     while (left < right);
+
+    //Return the position of target element
     int point = left;
     return point;
 }
 
+// Swap two elements in an array.
 void swap(int* a, int* b)
 {
     int t = *a;
@@ -50,6 +69,7 @@ void swap(int* a, int* b)
     *b = t;
 }
 
+// Define Insertion Sort Algorithm
 void InsertionSort(int arr[], int n){
     int i, j, key;
     for (i = 1; i < n; i++){
@@ -66,7 +86,7 @@ void InsertionSort(int arr[], int n){
 //Define Partition Function
 //Set pivot and move all smaller (smaller than pivot) to left
 //move all greater elements to right
-//Here refers to reference[1].
+//Here refers to reference[2].
 int Partition (int arr[], int left, int right)
 {
     //Define pivot variable
@@ -119,8 +139,8 @@ void printArray(int arr[], int n){
     cout << endl;
 }
 
+// Define Kunth Quick Sort method
 void KnuthQuickSort(int arr[], int n){
-
     int k;
     k = GoldenMeanSearch(arr, n);
     quickSort(arr, 0, n-1, k);
@@ -130,9 +150,15 @@ void KnuthQuickSort(int arr[], int n){
 
 int main() {
 
+    //Calculate Program Running Time
     clock_t start, end;
 
-    int arr[] = {2, 4, 8, 16, 32, 20, 10, 5, 1};
+    //Generate a random array
+    //Initial an empty array called arr
+    //num is the number of elements in arr
+    int num = 10000;
+    int arr[num];
+    RandomArray(arr, num);
     int n = sizeof(arr) / sizeof(arr[0]);
 
     start = clock();
@@ -143,3 +169,10 @@ int main() {
     return 0;
 
 }
+
+//Reference:
+//[1]. https://stackoverflow.com/questions/44351499/golden-section-search
+//[2]. https://www.geeksforgeeks.org/quick-sort/
+
+//More detailed explanation about this homework is here:
+//https://github.com/CYP0630/Study_Note/tree/master/CPE593_DataStructure_Algorithm/QuickSort
