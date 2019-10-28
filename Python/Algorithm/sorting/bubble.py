@@ -9,7 +9,7 @@ def bubbleSort(alist):
     n = len(alist)
     exchange = False
     #range(start, stop, step_length)
-    for i in range(n-1, 0, -1):
+    for i in range(n-1, 0, -1): 
         for j in range(0, i):
             if alist[j] > alist[j+1]:
                 alist[j], alist[j+1] = alist[j+1], alist[j]
