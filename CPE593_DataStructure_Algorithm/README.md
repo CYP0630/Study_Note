@@ -17,4 +17,4 @@ Implement some important Algorithms by using C++
 ## 4_Searching
    Naive Search
 
-## 5_Array
+## 5_Linkedlist
