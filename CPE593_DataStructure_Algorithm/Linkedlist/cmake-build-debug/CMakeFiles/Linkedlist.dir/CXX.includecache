@@ -7,6 +7,14 @@
 #IncludeRegexTransform: 
 
 /Users/cyp/Documents/Github/Study_Note/CPE593_DataStructure_Algorithm/Linkedlist/main.cpp
+fstream
+-
 iostream
+-
+sstream
+-
+string
+-
+vector
 -
 
