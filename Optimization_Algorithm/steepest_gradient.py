@@ -14,47 +14,62 @@ def hessian(f,*args):
     return hessian
 
 def alpha_value(matrix_1, matrix_2):
-    ipdb.set_trace()
     matrix_1_t = matrix_1.T
     para = np.dot(matrix_1_t, matrix_1) / (matrix_1_t.dot(matrix_2).dot(matrix_1))
     return para
 
-x1, x2, x3 = symbols('x1 x2 x3')
+x1, x2  = symbols('x1 x2')
 
-funx = (x1+5)**2 + (x2+8)**2 + (x3+7)**2 + 2 * x1**2 * x2**2 + 4 * x1**2 * x3**2
-funx_value = lambdify((x1, x2, x3), funx)
+funx = x1**2 + 2 * x2**2 + 4 * x1 + 4 * x2
+funx_value = lambdify((x1, x2), funx)
 
-g_x = grad(funx, x1, x2, x3)
-g_x_value = lambdify((x1, x2, x3),g_x)
-#g_x_value(1, 1, 1)
+g_x = grad(funx, x1, x2)
+g_x_value = lambdify((x1, x2),g_x)
 
-h_matrix = hessian(funx, x1, x2, x3)
-h_matrix_value = lambdify((x1, x2, x3), h_matrix)
-#h_matrix_value(1, 1, 1)
+h_matrix = hessian(funx, x1, x2)
 
-start = np.array([0, 0, 0], dtype=float)
-epsilon = 1e-7
+epsilon = 1e-4
 max_iteration = 10
-
-for i in range(max_iteration):
-    if i = 0:
-    gradient = g_x_value(start[0], start[1], start[2])
-    hessian_m = h_matrix_value(start[0], start[1], start[2])
-    learning_rate = alpha_value(gradient, hessian_m)
-    x_old = funx_value(start[0], start[1], start[2])
-    descend = start - learning_rate * gradient
-    x_new = funx_value(descend[0][0], descend[1][1], descend[2][2])
-    threshold = x_new - x_old
-    print(threshold)
+start = np.array([0, 0])
 
 
+for i in range(10):
+    if i==0:
+        gradient_value = g_x_value(start[0], start[1])
+        learning_rate = (alpha_value(gradient_value, h_matrix))[0][0]
+        descend_value = learning_rate * gradient_value
+        new_x1 = 0 - descend_value[0]
+        new_x2 = 0 - descend_value[1]
+        old_funx_value = funx_value(0, 0)
+        new_funx_value = funx_value(new_x1, new_x2)
+        print(old_funx_value)
+        print(new_funx_value)
+        if abs(new_funx_value - old_funx_value) < epsilon:
+            break
+    if i > 0:
+        gradient_value = g_x_value(new_x1[0], new_x2[0])
+        learning_rate = (alpha_value(gradient_value, h_matrix))[0][0]
+        descend_value = learning_rate * gradient_value
+        old_funx_value = funx_value(new_x1[0], new_x2[0])
+        new_x1 = new_x1[0] - descend_value[0]
+        new_x2 = new_x2[0] - descend_value[1]
+        new_funx_value = funx_value(new_x1, new_x2)
+        print(new_x1)
+        print(new_x2)
+        if abs(new_funx_value - old_funx_value) < epsilon:
+            break
 
-#dx1 = diff(funx, x1)
-#dx2 = diff(funx, x2)
-#dx3 = diff(funx, x3)
-#print(dx1.evalf(subs = {x1:1}))
-#print(dx2.evalf(subs = {x2:1}))
-#print(dx3.evalf(subs = {x3:1}))
+
+
+
+
+
+
+
+
+
+
+
 
 
 
