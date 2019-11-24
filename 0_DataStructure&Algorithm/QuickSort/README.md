@@ -12,6 +12,7 @@ KunthQuickSort.cpp
 ## Result
 
 Kunth QuickSort Result
+
 ![Result_1](result_1.png)
 
 
