@@ -10,8 +10,10 @@ Write a golden mean search to find the best k value for your \Knuth-optimized pa
 KunthQuickSort.cpp
 
 ## Result
+
 Kunth QuickSort Result
 ![Result_1](result_1.png)
+
 
 ![Result_2](result_2.png)
 
