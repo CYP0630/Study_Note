@@ -11,7 +11,7 @@
 
 // Instruction: Please use C++14 to compile file
 
-#include <iostream>
+#include "iostream"
 #include <cmath>
 #include <time.h>
 
@@ -24,50 +24,14 @@ const double phi = (1+sqrt(5))/2;
 void RandomArray(int arr[],int n)
 {
     int i=0;
-    srand( (unsigned)time( NULL ) );
+    //srand( (unsigned)time( NULL ) );
+    srand( (unsigned)n );
     while(i<n)
     {
         arr[i++]=rand();
     }
 }
 
-
-//Define golden mean search function
-//Here refers to reference[1].
-int GoldenMeanSearch(int arr[], int n){
-    int left = 0, right = n-1;
-    int S = (right - left) / phi;
-    int x = right - S;
-    int y = left + S;
-
-    do{
-        if (arr[x] > arr[y]){
-            right = y;
-            y = x;
-            S = (right - left) / phi;
-            x = right - S;
-        }
-        else{
-            left = x;
-            x = y;
-            S = (right - left) / phi;
-            y = left + S;
-        }
-    }
-    while (left < right);
-
-    //Return the position of target element
-    int point = left;
-    return point;
-}
-
-// Swap two elements in an array.
-void swap(int* a, int* b)
-{
-    int t = *a;
-    *a = *b;
-    *b = t;
-}
 
 // Define Insertion Sort Algorithm
 void InsertionSort(int arr[], int n){
@@ -90,23 +54,22 @@ void InsertionSort(int arr[], int n){
 int Partition (int arr[], int left, int right)
 {
     //Define pivot variable
-    int pivot;
-    pivot = (arr[right]);
-
-    int i;
-    i = left - 1;
-    int j = left;
-
-    for (j; j <= right - 1; j++)
+    unsigned int pivot = (arr[left]);
+    int i = left ;
+    int j = right;
+    while (i<j)
     {
-        if(arr[j]<pivot)
-        {
+        while(i<j&&arr[j]>=pivot)
+            j--;
+        if (i<j)
+            arr[i++] = arr[j];
+        while(i<j&&arr[i]<=pivot)
             i++;
-            swap(&arr[i], &arr[j]);
-        }
+        if (i<j)
+            arr[j--] = arr[i];
     }
-    swap(&arr[i+1], &arr[right]);
-    return (i + 1);
+    arr[i] = pivot;
+    return i ;
 }
 
 //Define quickSort Function
@@ -115,8 +78,7 @@ int Partition (int arr[], int left, int right)
 //right is the largest index value
 void quickSort(int arr[], int left, int right, int k)
 {
-    int n = sizeof(arr) / sizeof(arr[0]);
-
+    //int n = sizeof(arr) / sizeof(arr[0]);
     if(left >= right) {
         return ;
     }
@@ -133,25 +95,57 @@ void quickSort(int arr[], int left, int right, int k)
     }
 }
 
+// Define Kunth Quick Sort method
+double KnuthQuickSort(int arr[], int n,int k){
+    //Calculate Program Running Time
+    clock_t start, end;
+    start = clock();
+    quickSort(arr, 0, n-1, k);
+    InsertionSort(arr, n);
+    end = clock();
+    return (double)(end - start)/CLOCKS_PER_SEC;
+}
+
+//Define golden mean search function
+//Here refers to reference[1].
+int GoldenMeanSearch(int arr[], int n){
+    int left = 0, right = n;
+    int S = (right - left) / phi;
+    int x = right - S;
+    int y = left + S;
+
+    do{
+        double t1=KnuthQuickSort(arr,n,x);
+        double t2 = KnuthQuickSort(arr,n,y);
+        if ( t1< t2){
+            cout<<"k is:"<<x<<endl;
+            right = y;
+            y = x;
+            S = (right - left) / phi;
+            x = right - S;
+
+        }
+        else{
+            cout<<"k is:"<<y<<endl;
+            left = x;
+            x = y;
+            S = (right - left) / phi;
+            y = left + S;
+        }
+    } while ( right>left);
+
+    //Return the position of target element
+    int point = left;
+    return point;
+}
+
 void printArray(int arr[], int n){
     for (int i = 0; i < n; i++)
         cout << arr[i] <<" ";
     cout << endl;
 }
 
-// Define Kunth Quick Sort method
-void KnuthQuickSort(int arr[], int n){
-    int k;
-    k = GoldenMeanSearch(arr, n);
-    quickSort(arr, 0, n-1, k);
-    InsertionSort(arr, n);
-    printArray(arr, n);
-}
-
 int main() {
-
-    //Calculate Program Running Time
-    clock_t start, end;
 
     //Generate a random array
     //Initial an empty array called arr
@@ -161,11 +155,14 @@ int main() {
     RandomArray(arr, num);
     int n = sizeof(arr) / sizeof(arr[0]);
 
+    //Execute GoldenMeanSearch and Sorting
+    clock_t start, end;
     start = clock();
-    KnuthQuickSort(arr, n);
+    int k = GoldenMeanSearch(arr, n);
     end = clock();
-
+    cout<<"the best k for number "<<num<<" is "<<k<<endl;
     cout << "Running Time" << (double)(end - start)/CLOCKS_PER_SEC <<endl;
+    printArray(arr, n);
     return 0;
 
 }
