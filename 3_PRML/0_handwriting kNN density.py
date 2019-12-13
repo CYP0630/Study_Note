@@ -3,6 +3,7 @@ import random as rd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 import time
+import matplotlib.pyplot as plt
 
 def generateTrain(data, label, trainNumber):
     data_train = []
@@ -52,7 +53,7 @@ class handWriteKNN():
                 self.data_train1.append(self.data_train[i])
             if y[i] == 2:
                 self.data_train2.append(self.data_train[i])
-
+        print(self.data_train0, '\n', self.data_train1, '\n', self.data_train2)
     def predict(self, data_test):
         prediction = []
         for i in data_test:
@@ -119,3 +120,12 @@ print(accuracy(prediction, label_test))
 print(time1-time0)
 
 print('0.0019948482513427734')
+acc = []
+for k in range(1, 20):
+    handWrite = handWriteKNN(k)
+    handWrite.fit(data_train, label_train)
+    prediction = handWrite.predict(data_test)
+    acc.append(accuracy(prediction, label_test))
+
+plt.plot( range(1, 20), acc, color='blue', marker='.')
+plt.show()

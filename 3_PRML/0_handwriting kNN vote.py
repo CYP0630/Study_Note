@@ -2,6 +2,7 @@ from sklearn import datasets
 from sklearn.preprocessing import StandardScaler
 import random as rd
 import math
+import matplotlib.pyplot as plt
 
 
 def generateTrain(data, label, trainNumber):
@@ -88,3 +89,13 @@ print('Accuracy of handwriting kNN prediction\n', accuracy(prediction, label_tes
 knnPack = '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 2 2 2 1 2 2 2 2 1 2 2 2 2 1 2 1 2 2 2'
 knnPackPrediction = [int(x) for x in knnPack.split(' ')]
 print('Comparing to skLearn kNN\n', accuracy(prediction, knnPackPrediction))
+
+acc = []
+for k in range(1,20):
+    handWrite = HandWriteKNN2(k)
+    handWrite.fit(data_train, label_train)
+    prediction = handWrite.predict(data_test)
+    acc.append(accuracy(prediction, label_test))
+
+plt.plot(range(1, 20), acc)
+plt.show()
