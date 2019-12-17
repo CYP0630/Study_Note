@@ -26,7 +26,6 @@ iteration = 0;
 max_iteration = 1000;
 
 
-
 while iteration < max_iteration
     alpha_change = 0;
         for i = 1:num
