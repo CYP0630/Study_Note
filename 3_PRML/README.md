@@ -7,6 +7,9 @@ Scikit-learn (Baseline Experiment)<br>
 keras (Baseline Experiment)<br>
 Jupyter Notebook (show experiment step)
 
+### Data Visualization:
+    Visualization_Iris.ipynb
+
 ### Density Estimation:
     Run Instruction: python 0_handwriting kNN density.py
 
