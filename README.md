@@ -7,6 +7,8 @@
 
 ## 2_Optimization
 
-## 3_Machine Learning
+## Pattern Recognition and Machine Learning
 
-## 4_Deep Learning 
+## 4_Deep Learning
++ <Deep Learning with Python> Study Note
++ CS583 Deep Learning Study Note 

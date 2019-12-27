@@ -51,7 +51,7 @@ public:
         Node* p = root;
         while (true){
             if (v < p->val){
-                if (p->left = nullptr){
+                if (p->left == nullptr){
                     p->left = new Node(v);
                     return;
                 }
