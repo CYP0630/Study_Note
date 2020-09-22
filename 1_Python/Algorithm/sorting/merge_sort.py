@@ -1,17 +1,18 @@
 
 def merge_sort(array):
-    merge_sort_helper(array, 0, len(array) - 1)
+    tmp = [0 for _ in range(len(array))]
+    merge_sort_helper(array, 0, len(array) - 1, tmp)
 
-def merge_sort_helper(array, left, right):
+def merge_sort_helper(array, left, right, tmp):
     if left >= right:
         return
     mid = (left + right) // 2 #[left, mid] [mid+1, right]
     
-    merge_sort_helper(array, left, mid)
-    merge_sort_helper(array, mid+1, right)
-    merge(array, left, right)
+    merge_sort_helper(array, left, mid, tmp)
+    merge_sort_helper(array, mid+1, right, tmp)
+    merge(array, left, right, tmp)
 
-def merge(array, left, right):
+def merge(array, left, right, tmp):
 
     n = right - left + 1
     tmp = [0 for _ in range(n)]
