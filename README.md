@@ -10,5 +10,5 @@
 ## Pattern Recognition and Machine Learning
 
 ## 4_Deep Learning
-+ <Deep Learning with Python> Study Note
++ <Deep Learning with Python>（Keras）Study Note
 + CS583 Deep Learning Study Note 
