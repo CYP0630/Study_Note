@@ -7,8 +7,12 @@
 
 ## 2_Optimization
 
-## Pattern Recognition and Machine Learning
+## 3_Pattern Recognition and Machine Learning
 
-## 4_Deep Learning
-+ <Deep Learning with Python> Study Note
-+ CS583 Deep Learning Study Note 
+## 4_Keras
+
++ Deep Learning with Python-Keras: Study Note
+
+## 5_Pytorch
+
+
